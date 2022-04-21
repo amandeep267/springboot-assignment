@@ -20,18 +20,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        // add our users for in memory authentication
-
         auth.jdbcAuthentication().dataSource(securityDataSource);
-
-//        User.UserBuilder users = User.withDefaultPasswordEncoder();
-//
-//        auth.inMemoryAuthentication()
-//                .withUser(users.username("john").password("test123").roles("EMPLOYEE"))
-//                .withUser(users.username("mary").password("test123").roles("EMPLOYEE", "MANAGER"))
-//                .withUser(users.username("susan").password("test123").roles("EMPLOYEE", "ADMIN"));
-
-
 
     }
     @Override
@@ -52,18 +41,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
 
-//        http
-//                .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .httpBasic();
-
-
     }
 
 }
 
-
-//
