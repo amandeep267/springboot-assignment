@@ -31,17 +31,6 @@ public class AdminController {
 
     }
 
-//    @GetMapping("/books/{bookId}")
-//    public String getBook(@PathVariable int bookId) {
-//
-//        Book theBook = bookService.findById(bookId);
-//
-////        if (theBook == null) {
-////            throw new CustomerNotFoundException("Customer id not found - " + customerId);
-////        }
-//
-//        return "listBooks";
-//    }
     @GetMapping("/addBook")
     public String addNewBook(Model model) {
         model.addAttribute("book"   , new Book());
@@ -77,7 +66,6 @@ public class AdminController {
         return "addBook";
     }
 
-    // add mapping for DELETE /customers/{customerId} - delete customer
 
     @GetMapping("/books/{bookId}")
     public String deleteBook(@PathVariable int bookId) {
