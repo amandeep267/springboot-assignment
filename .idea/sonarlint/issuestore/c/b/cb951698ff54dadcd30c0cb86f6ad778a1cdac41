@@ -1,0 +1,11 @@
+
+x
+java:S1128"VRemove this unused import 'org.springframework.boot.builder.SpringApplicationBuilder'.(«İÒøÿÿÿÿ8úÚêçƒ0
+ƒ
+java:S1128"fRemove this unused import 'org.springframework.boot.web.servlet.support.SpringBootServletInitializer'.(“²ş÷8šùêçƒ0
+s
+java:S1128	"QRemove this unused import 'org.springframework.context.annotation.ComponentScan'.(æëòÒûÿÿÿÿ8áĞÏçƒ0
+ƒ
+java:S1128
+"fRemove this unused import 'org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter'.(Ùõ’ß8ãĞÏçƒ0
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‹ ¼Ô

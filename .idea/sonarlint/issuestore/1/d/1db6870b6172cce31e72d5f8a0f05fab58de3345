@@ -1,0 +1,14 @@
+
+]
+java:S1854	"BRemove this useless assignment to local variable "areacalculator".(æøµÚúÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(º ìıÿÿÿÿ
+?
+java:S1197"*Move the array designators [] to the type.(ÇŠÜI
+N
+java:S1481	"3Remove this unused "areacalculator" local variable.(æøµÚúÿÿÿÿ
+Q	java:S125
+"<This block of commented-out lines of code should be removed.(´­Ïç
+J
+java:S1128"/Remove this unused import 'java.awt.geom.Area'.(ˆ¡Ş¸üÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©º“üùÿÿÿÿ
