@@ -64,7 +64,7 @@ public class StudentController {
         for(StudentBookList b : bookList)
         {alreadyAddedBooks.add(b.getName());}
 
-        List<Book> books=new ArrayList<>();
+         List<Book> books=new ArrayList<>();
       for(int i=0;i<result.size();i++)
       {
           if(alreadyAddedBooks.contains(result.get(i).getName()))
@@ -75,7 +75,6 @@ public class StudentController {
       }
 
       theModel.addAttribute("books",books);
-//      theModel.addAttribute("alreadyAddedBooks",alreadyAddedBooks);
         return "listBooks";
 
     }
@@ -83,15 +82,15 @@ public class StudentController {
     public String addBooks(@RequestParam("id") int theId)
     {
         String currentPrincipalName=getUserName();
-       Book book= bookService.findById(theId);
-
+        
+        Book book= bookService.findById(theId);
         StudentBookList bookList=new StudentBookList();
-       // BeanUtils.copyProperties(book,bookList);
-//        bookList.setId(0);
+        
         bookList.setUserName(currentPrincipalName);
         bookList.setAuthorName(book.getAuthorName());
         bookList.setCategory(book.getCategory());
         bookList.setName(book.getName());
+        
         studentBookService.save(bookList);
         return "redirect:/student/showList";
 
