@@ -16,28 +16,24 @@ public class StudentBookList {
 
     @Column(name="name")
     @NotNull(message="cannot be null")
-//    @Size(min=1 ,message="size must be >0")
     @Pattern(regexp = "^(?=[a-zA-Z])[a-zA-Z0-9]{0,12}$",
             message = "name must be of 1 to 12 length with no special characters")
     private String name;
 
     @Column(name="author_name")
     @NotNull(message="cannot be null")
-//    @Size(min=1 ,message="size must be >0")
     @Pattern(regexp = "^(?=[a-zA-Z])[a-zA-Z0-9]{0,12}$",
             message = "name must be of 1 to 12 length with no special characters")
     private String authorName;
 
     @Column(name="category")
     @NotNull(message="cannot be null")
-//    @Size(min=1 ,message="size must be >0")
     @Pattern(regexp = "^(?=[a-zA-Z])[a-zA-Z0-9]{0,12}$",
             message = "name must be of 1 to 12 length with no special characters")
     private String category;
 
     @Column(name="user_name")
     @NotNull(message="cannot be null")
-//    @Size(min=1 ,message="size must be >0")
     @Pattern(regexp = "^(?=[a-zA-Z])[a-zA-Z0-9]{0,12}$",
             message = "name must be of 1 to 12 length with no special characters")
 private String userName;
