@@ -4,6 +4,8 @@ import com.springbootProject.demo.entity.Book;
 import com.springbootProject.demo.entity.StudentBookList;
 import com.springbootProject.demo.service.BookService;
 import com.springbootProject.demo.service.StudentBookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
+
     @Autowired
     private StudentBookService studentBookService;
     @Autowired
@@ -41,6 +45,8 @@ public class StudentController {
     {  String currentPrincipalName=getUserName();
         List<StudentBookList> books=studentBookService.findAllByUserName(currentPrincipalName);
         theModel.addAttribute("books",books);
+        logger.info("operation get list of books");
+
         return "studentBookList";
 
     }
@@ -49,6 +55,8 @@ public class StudentController {
     public String removeBook(@PathVariable int bookId)
     {
         studentBookService.deleteById(bookId);
+        logger.info("operation delete book by id");
+
         return "redirect:/student/books";
 
     }
@@ -64,7 +72,7 @@ public class StudentController {
         for(StudentBookList b : bookList)
         {alreadyAddedBooks.add(b.getName());}
 
-         List<Book> books=new ArrayList<>();
+        List<Book> books=new ArrayList<>();
       for(int i=0;i<result.size();i++)
       {
           if(alreadyAddedBooks.contains(result.get(i).getName()))
@@ -75,6 +83,8 @@ public class StudentController {
       }
 
       theModel.addAttribute("books",books);
+        logger.info("operation show book list");
+
         return "listBooks";
 
     }
@@ -82,19 +92,21 @@ public class StudentController {
     public String addBooks(@RequestParam("id") int theId)
     {
         String currentPrincipalName=getUserName();
-        
-        Book book= bookService.findById(theId);
+       Book book= bookService.findById(theId);
+
         StudentBookList bookList=new StudentBookList();
-        
+
         bookList.setUserName(currentPrincipalName);
         bookList.setAuthorName(book.getAuthorName());
         bookList.setCategory(book.getCategory());
         bookList.setName(book.getName());
-        
         studentBookService.save(bookList);
+        logger.info("operation add books for student");
+
         return "redirect:/student/showList";
 
     }
 
 
 }
+
