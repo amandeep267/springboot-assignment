@@ -3,6 +3,8 @@ package com.springbootProject.demo.controller;
 
 import com.springbootProject.demo.entity.Book;
 import com.springbootProject.demo.service.BookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     @Autowired
     private BookService bookService;
 
@@ -25,7 +27,7 @@ public class AdminController {
 
         List<Book>books=bookService.findAll();
         theModel.addAttribute("books",books);
-        System.out.print(books.size());
+        logger.info("Operation  get the book list");
 
         return "listBooks";
 
@@ -34,23 +36,21 @@ public class AdminController {
     @GetMapping("/addBook")
     public String addNewBook(Model model) {
         model.addAttribute("book"   , new Book());
+        logger.info("Operation get  Book");
         return "addBook";
     }
 
 
     @PostMapping("/books")
-    public String addBook(@Valid @ModelAttribute("book") Book theBook, BindingResult BindingResult) {
+    public String addBook(@Valid @ModelAttribute("book") Book theBook, BindingResult bindingResult) {
 
-        // also just in case the pass an id in JSON ... set id to 0
-        // this is force a save of new item ... instead of update
 
-//        theBook.setId(0);
-        if (BindingResult.hasErrors()) {
-
+        if (bindingResult.hasErrors()) {
+            logger.error("error in adding book"+bindingResult.hasErrors());
             return "addBook";
         }
         bookService.save(theBook);
-
+        logger.info("Operation Added New Book");
         return "redirect:/admin/books";
     }
 
@@ -61,16 +61,19 @@ public class AdminController {
                                     Model theModel) {
 
         Book theBook = bookService.findById(theId);
-        System.out.println(theBook.getAuthorName());
+        logger.info("Operation show form update");
         theModel.addAttribute("book", theBook);
         return "addBook";
     }
 
 
+
     @GetMapping("/books/{bookId}")
     public String deleteBook(@PathVariable int bookId) {
         bookService.deleteById(bookId);
+        logger.info("Operation get book with defined id");
         return "redirect:/admin/books";
     }
 
 }
+
